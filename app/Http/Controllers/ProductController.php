@@ -63,7 +63,7 @@ class ProductController extends Controller
             ], 200);
         } else {
             return response()->json([
-                "message" => "Product updated failed"
+                "message" => "Product updation failed"
             ], 404);
         }
     }
