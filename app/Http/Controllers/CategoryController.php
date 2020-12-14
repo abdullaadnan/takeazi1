@@ -22,13 +22,14 @@ class CategoryController extends Controller
         if ($validator->fails()){
             return response()->json($validator->errors(),400);
         }
-        $category=DB::table('categories')->insert([
+        $category=DB::table('categories')->insertGetId([
             'category_name' => $request->input('category_name'),
             'category_img' => $request->input('category_img'),
             'parent_category' => $request->input('parent_category'),
         ]);
         return response()->json([
             "message" => "category added succesfully",
+            "category_id"=>$category
         ], 201);
     }
     public function update(Request $request,$category_id){

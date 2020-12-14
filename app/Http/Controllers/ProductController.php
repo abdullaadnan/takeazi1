@@ -21,14 +21,14 @@ class ProductController extends Controller
             'product_name'=>'required',
             'category_name'=>'required',
             'prdct_img'=>'required',
-            'price'=>'required',
-            'in_stock'=>'required',
-            'veg_non'=>'required',
+            'price'=>'required|integer',
+            'in_stock'=>'required|Boolean',
+            'veg_non'=>'required|Boolean',
         ]);
         if ($validator->fails()){
             return response()->json($validator->errors(),400);
         }
-        $product = DB::table('products')->insert([
+        $product = DB::table('products')->insertGetId([
             'product_name' => $request->input('product_name'),
             'category_name' => $request->input('category_name'),
             'prdct_img' => $request->input('prdct_img'),
@@ -47,6 +47,7 @@ class ProductController extends Controller
         ]);
         return response()->json([
             "message" => "product added succesfully",
+            "product_id"=>$product
         ], 201);
     }
 
@@ -56,9 +57,9 @@ class ProductController extends Controller
             'product_name'=>'required',
             'category_name'=>'required',
             'prdct_img'=>'required',
-            'price'=>'required',
-            'in_stock'=>'required',
-            'veg_non'=>'required',
+            'price'=>'required|integer',
+            'in_stock'=>'required|Boolean',
+            'veg_non'=>'required|Boolean',
 
         ]);
         if ($validator->fails()){
