@@ -43,8 +43,15 @@ Route::group([
     Route::post('update-shop/{shop_id}','ShopController@update');
     Route::get('get-all-shop','ShopController@index');
     Route::get('get-shop/{shop_id}','ShopController@SelectById');
-
-
+});
+Route::group([
+    'middleware'=>'api',
+    'prefix'=>'staff',
+],function (){
+    Route::post('add-staff','StaffController@create');
+    Route::post('update-staff/{staff_id}','StaffController@update');
+    Route::get('get-all-staff','StaffController@index');
+    Route::get('get-staff/{staff_id}','StaffController@SelectById');
 });
 
 

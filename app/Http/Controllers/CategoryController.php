@@ -74,7 +74,7 @@ class CategoryController extends Controller
     public function delete($category_id)
     {
         if (DB::table('categories')->where('category_id', $category_id)->exists()) {
-            $category = DB::table('categories')->where('category_id', $category_id)->get();
+            $category = DB::table('categories')->where('category_id', $category_id)->delete();
             return response()->json([
                 "message" => " Category records deleted"
             ], 202);
