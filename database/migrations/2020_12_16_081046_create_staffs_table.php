@@ -25,7 +25,7 @@ class CreateStaffsTable extends Migration
             $table->string('designation');
             $table->string('city');
             $table->string('state');
-            $table->integer('phone_number');
+            $table->string('phone_number');
             $table->string('staff_img')->nullable();
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
