@@ -15,25 +15,21 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->primary('id');
             $table->integer('shop_id');
+            $table->foreign('shop_id')->references('shop_id')->on('shops');
             $table->string('product_name');
-            $table->integer('product_category_id');
-            $table->string('prdct_img');
+            $table->integer('product_category_id')->nullable();
+            $table->foreign('product_category_id')->references('id')->on('product_category');
             $table->json('details')->nullable();
             $table->integer('mrp');
             $table->integer('selling_price');
             $table->integer('cost_price');
-            $table->integer('waiting_time');
-            $table->boolean('status');
-            $table->boolean('is_offer')->nullable();
-            $table->integer('grb_rs')->nullable();
-            $table->integer('spcl_ofr')->nullable();
-            $table->date('from_date')->nullable();
-            $table->date('till_date')->nullable();
-            $table->boolean('veg_non');
+            $table->integer('waiting_time')->nullable();
+            $table->string('thumbnail')->nullable();
+            $table->boolean('status')->default(1);
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();
-
         });
     }
 

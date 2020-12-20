@@ -18,32 +18,27 @@ class ProductController extends Controller
     public function create(Request $request)
     {
         $validator=validator::make($request->all(),[
+            'shop_id='>'required|integer',
             'product_name'=>'required',
-            'category_name'=>'required',
-            'prdct_img'=>'required',
-            'price'=>'required|integer',
-            'in_stock'=>'required|Boolean',
-            'veg_non'=>'required|Boolean',
+            'mrp'=>'required|integer',
+            'selling_price'=>'required|integer',
+            'cost_price'=>'required|integer',
+            'status'=>'required|Boolean',
         ]);
         if ($validator->fails()){
             return response()->json($validator->errors(),400);
         }
         $product = DB::table('products')->insertGetId([
+            'shop_id' =>$request->input('shop_id'),
             'product_name' => $request->input('product_name'),
-            'category_name' => $request->input('category_name'),
-            'prdct_img' => $request->input('prdct_img'),
-            'description' => $request->input('description'),
-            'contents' => $request->input('contents'),
-            'production_method' => $request->input('production_method'),
-            'ingredients' => $request->input('ingredients'),
-            'price' => $request->input('price'),
-            'in_stock' => $request->input('in_stock'),
-            'is_offer' => $request->input('is_offer'),
-            'grb_rs' => $request->input('grb_rs'),
-            'spcl_ofr' => $request->input('spcl_ofr'),
-            'from_date' => $request->input('from_date'),
-            'till_date' => $request->input('till_date'),
-            'veg_non' => $request->input('veg_non'),
+            'product_category_id' => $request->input('product_category_id'),
+            'details' => $request->input('details'),
+            'mrp' => $request->input('mrp'),
+            'selling_price' => $request->input('selling_price'),
+            'cost_price' => $request->input('cost_price'),
+            'waiting_time' => $request->input('waiting_time'),
+            'thumbnail' => $request->input('thumbnail'),
+            'status' => $request->input('status'),
         ]);
         return response()->json([
             "message" => "product added succesfully",
@@ -54,12 +49,12 @@ class ProductController extends Controller
     public function update(Request $request, $product_id)
     {
         $validator=validator::make($request->all(),[
+            'shop_id='>'required|integer',
             'product_name'=>'required',
-            'category_name'=>'required',
-            'prdct_img'=>'required',
-            'price'=>'required|integer',
-            'in_stock'=>'required|Boolean',
-            'veg_non'=>'required|Boolean',
+            'mrp'=>'required|integer',
+            'selling_price'=>'required|integer',
+            'cost_price'=>'required|integer',
+            'status'=>'required|Boolean',
 
         ]);
         if ($validator->fails()){
@@ -67,21 +62,16 @@ class ProductController extends Controller
         }
         if (DB::table('products')->where('product_id', $product_id)->exists()) {
             $products = DB::table('products')->where('product_id', $product_id)->update([
+                'shop_id' =>$request->input('shop_id'),
                 'product_name' => $request->input('product_name'),
-                'category_name' => $request->input('category_name'),
-                'prdct_img' => $request->input('prdct_img'),
-                'description' => $request->input('description'),
-                'contents' => $request->input('contents'),
-                'production_method' => $request->input('production_method'),
-                'ingredients' => $request->input('ingredients'),
-                'price' => $request->input('price'),
-                'in_stock' => $request->input('in_stock'),
-                'is_offer' => $request->input('is_offer'),
-                'grb_rs' => $request->input('grb_rs'),
-                'spcl_ofr' => $request->input('spcl_ofr'),
-                'from_date' => $request->input('from_date'),
-                'till_date' => $request->input('till_date'),
-                'veg_non' => $request->input('veg_non'),
+                'product_category_id' => $request->input('product_category_id'),
+                'details' => $request->input('details'),
+                'mrp' => $request->input('mrp'),
+                'selling_price' => $request->input('selling_price'),
+                'cost_price' => $request->input('cost_price'),
+                'waiting_time' => $request->input('waiting_time'),
+                'thumbnail' => $request->input('thumbnail'),
+                'status' => $request->input('status'),
                 'updated_at'=> Carbon::now()
             ]);
             return response()->json([
