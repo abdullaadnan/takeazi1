@@ -12,82 +12,99 @@ class ShopController extends Controller
     public function create(Request $request)
     {
         $validator = validator::make($request->all(), [
-            'shop_name' => 'required',
+            'name' => 'required',
             'shop_type' => 'required',
-            'contact_number' => 'required|integer',
-            'shop_address' => 'required',
-            'shop_pin' => 'required|integer',
-            'shop_location' => 'required',
-            'shop_license' => 'required',
-            'is_pur_veg' => 'required|Boolean',
-            'shop_work_time' => 'required|Json',
-            'shop_banner_img' => 'required',
+            'mobile1' => 'required',
+            'mobile2' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'address_1' => 'required',
+            'pincode_id' => 'required|integer',
+            'licence_code' => 'required',
+            'shop_thumbnail' => 'required',
+            'shop_banner1' => 'required',
             'shop_banner_img1' => 'required',
+            'is_display'=>'required|Boolean',
+            'status'=>'required|Boolean',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
             $shop = DB::table('shops')->insertGetId([
-                'shop_name' => $request->input('shop_name'),
+                'shop_code' => $request->input('shop_code'),
                 'short_name' => $request->input('short_name'),
+                'name' => $request->input('name'),
                 'shop_type' => $request->input('shop_type'),
-                'contact_number' => $request->input('contact_number'),
-                'shop_address' => $request->input('shop_address'),
-                'shop_pin' => $request->input('shop_pin'),
-                'shop_land_mark' => $request->input('shop_land_mark'),
-                'shop_location' => $request->input('shop_location'),
-                'shop_license' => $request->input('shop_license'),
-                'is_pur_veg' => $request->input('is_pur_veg'),
-                'shop_work_time' => $request->input('shop_work_time'),
-                'shop_banner_img' => $request->input('shop_banner_img'),
-                'shop_banner_img1' => $request->input('shop_banner_img1'),
+                'mobile1' => $request->input('mobile1'),
+                'mobile2' => $request->input('mobile2'),
+                'latitude' => $request->input('latitude'),
+                'longitude' => $request->input('longitude'),
+                'quote' => $request->input('quote'),
+                'address_1' => $request->input('address_1'),
+                'address_2' => $request->input('address_2'),
+                'address_3' => $request->input('address_3'),
+                'shop_banner_img1' => $request->input('pincode_id'),
+                'licence_code' => $request->input('licence_code'),
+                'shop_thumbnail' => $request->input('shop_thumbnail'),
+                'shop_banner1' => $request->input('shop_banner1'),
+                'shop_banner2' => $request->input('shop_banner2'),
+                'is_display' => $request->input('is_display'),
+                'status' => $request->input('status'),
             ]);
 
             return response()->json([
                 'message' => 'shop added successfully',
-                'shop_id' => $shop
+                'id' => $shop
             ], 201);
 
     }
-    public function update(Request $request, $shop_id)
+    public function update(Request $request, $id)
     {
         $validator = validator::make($request->all(), [
-            'shop_name' => 'required',
+            'name' => 'required',
             'shop_type' => 'required',
-            'contact_number' => 'required|integer',
-            'shop_address' => 'required',
-            'shop_pin' => 'required|integer',
-            'shop_location' => 'required',
-            'shop_license' => 'required',
-            'is_pur_veg' => 'required|Boolean',
-            'shop_work_time' => 'required|Json',
-            'shop_banner_img' => 'required',
+            'mobile1' => 'required',
+            'mobile2' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'address_1' => 'required',
+            'pincode_id' => 'required|integer',
+            'licence_code' => 'required',
+            'shop_thumbnail' => 'required',
+            'shop_banner1' => 'required',
             'shop_banner_img1' => 'required',
+            'is_display'=>'required|Boolean',
+            'status'=>'required|Boolean',
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-        if (DB::table('shops')->where('shop_id', $shop_id)->exists()) {
-            $shop = DB::table('shops')->where('shop_id', $shop_id)->update([
-                'shop_name' => $request->input('shop_name'),
+        if (DB::table('shops')->where('id', $id)->exists()) {
+            $shop = DB::table('shops')->where('id', $id)->update([
+                'shop_code' => $request->input('shop_code'),
                 'short_name' => $request->input('short_name'),
+                'name' => $request->input('name'),
                 'shop_type' => $request->input('shop_type'),
-                'contact_number' => $request->input('contact_number'),
-                'shop_address' => $request->input('shop_address'),
-                'shop_pin' => $request->input('shop_pin'),
-                'shop_land_mark' => $request->input('shop_land_mark'),
-                'shop_location' => $request->input('shop_location'),
-                'shop_license' => $request->input('shop_license'),
-                'is_pur_veg' => $request->input('is_pur_veg'),
-                'shop_work_time' => $request->input('shop_work_time'),
-                'shop_banner_img' => $request->input('shop_banner_img'),
-                'shop_banner_img1' => $request->input('shop_banner_img1'),
+                'mobile1' => $request->input('mobile1'),
+                'mobile2' => $request->input('mobile2'),
+                'latitude' => $request->input('latitude'),
+                'longitude' => $request->input('longitude'),
+                'quote' => $request->input('quote'),
+                'address_1' => $request->input('address_1'),
+                'address_2' => $request->input('address_2'),
+                'address_3' => $request->input('address_3'),
+                'shop_banner_img1' => $request->input('pincode_id'),
+                'licence_code' => $request->input('licence_code'),
+                'shop_thumbnail' => $request->input('shop_thumbnail'),
+                'shop_banner1' => $request->input('shop_banner1'),
+                'shop_banner2' => $request->input('shop_banner2'),
+                'is_display' => $request->input('is_display'),
+                'status' => $request->input('status'),
                 'updated_at'=> Carbon::now()
 
             ]);
             return response()->json([
                 "message" => "shop updated successfully",
-                "shop_id"=>"$shop_id"
             ], 200);
         } else {
             return response()->json([
@@ -101,10 +118,10 @@ class ShopController extends Controller
         $shop = DB::table('shops')->get();
         return (['shops' => $shop]);
     }
-    public function SelectById($shop_id)
+    public function SelectById($id)
     {
-        if (DB::table('shops')->where('shop_id', $shop_id)->exists()) {
-            $shop = DB::table('shops')->where('shop_id', $shop_id)->get();
+        if (DB::table('shops')->where('id', $id)->exists()) {
+            $shop = DB::table('shops')->where('id', $id)->get();
             return (['shops' => $shop]);
         } else {
             return response()->json([

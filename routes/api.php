@@ -22,27 +22,18 @@ Route::group([
     'prefix'=>'product',
     ],function () {
     Route::get('get-all-products', 'ProductController@index');
-    Route::get('get-product/{product_id}', 'ProductController@SelectById');
+    Route::get('get-product/{id}', 'ProductController@SelectById');
     Route::post('add-product', 'ProductController@create');
-    Route::post('update-product/{product_id}', 'ProductController@update');
-});
-Route::group([
-    'middleware'=>'api',
-    'prefix'=>'category',
-],function () {
-    Route::get('get-all-category', 'CategoryController@index');
-    Route::get('get-category/{category_id}', 'CategoryController@SelectById');
-    Route::post('add-category', 'CategoryController@create');
-    Route::post('update-category/{category_id}', 'CategoryController@update');
+    Route::post('update-product/{id}', 'ProductController@update');
 });
 Route::group([
     'middleware'=>'api',
     'prefix'=>'shop',
 ],function (){
     Route::post('add-shop','ShopController@create');
-    Route::post('update-shop/{shop_id}','ShopController@update');
+    Route::post('update-shop/{id}','ShopController@update');
     Route::get('get-all-shop','ShopController@index');
-    Route::get('get-shop/{shop_id}','ShopController@SelectById');
+    Route::get('get-shop/{id}','ShopController@SelectById');
 });
 Route::group([
     'middleware'=>'api',
@@ -52,6 +43,24 @@ Route::group([
     Route::post('update-staff/{staff_id}','StaffController@update');
     Route::get('get-all-staff','StaffController@index');
     Route::get('get-staff/{staff_id}','StaffController@SelectById');
+});
+Route::group([
+    'middleware'=>'api',
+    'prefix'=>'product_category',
+],function (){
+    Route::post('add-product-category','ProductCategoryController@create');
+    Route::post('update-product-category/{id}','ProductCategoryController@update');
+    Route::get('get-all-product-category','ProductCategoryController@index');
+    Route::get('get-product-category/{id}','ProductCategoryController@SelectById');
+});
+Route::group([
+    'middleware'=>'api',
+    'prefix'=>'product_subcategories',
+],function (){
+    Route::post('add-product-subcategories','ProductSubcategoryController@create');
+    Route::post('update-product-subcategories/{id}','ProductSubcategoryController@update');
+    Route::get('get-all-product-subcategories','ProductSubcategoryController@index');
+    Route::get('get-product-subcategories/{id}','ProductSubcategoryController@SelectById');
 });
 
 

@@ -42,11 +42,11 @@ class ProductController extends Controller
         ]);
         return response()->json([
             "message" => "product added succesfully",
-            "product_id"=>$product
+            "id"=>$product
         ], 201);
     }
 
-    public function update(Request $request, $product_id)
+    public function update(Request $request, $id)
     {
         $validator=validator::make($request->all(),[
             'shop_id='>'required|integer',
@@ -60,8 +60,8 @@ class ProductController extends Controller
         if ($validator->fails()){
             return response()->json($validator->errors(),400);
         }
-        if (DB::table('products')->where('product_id', $product_id)->exists()) {
-            $products = DB::table('products')->where('product_id', $product_id)->update([
+        if (DB::table('products')->where('id', $id)->exists()) {
+            $products = DB::table('products')->where('id', $id)->update([
                 'shop_id' =>$request->input('shop_id'),
                 'product_name' => $request->input('product_name'),
                 'product_category_id' => $request->input('product_category_id'),
@@ -76,7 +76,7 @@ class ProductController extends Controller
             ]);
             return response()->json([
                 "message" => "product updated successfully",
-                "product_id"=>"$product_id"
+                "id"=>"$id"
             ], 200);
         } else {
             return response()->json([
@@ -85,10 +85,10 @@ class ProductController extends Controller
         }
     }
 
-    public function SelectById($product_id)
+    public function SelectById($id)
     {
-        if (DB::table('products')->where('product_id', $product_id)->exists()) {
-            $products = DB::table('products')->where('product_id', $product_id)->get();
+        if (DB::table('products')->where('id', $id)->exists()) {
+            $products = DB::table('products')->where('id', $id)->get();
             return (['products' => $products]);
         } else {
             return response()->json([
@@ -97,10 +97,10 @@ class ProductController extends Controller
         }
     }
 
-    public function delete($product_id)
+    public function delete($id)
     {
-        if (DB::table('products')->where('product_id', $product_id)->exists()) {
-            $products = DB::table('products')->where('product_id', $product_id)->delete();
+        if (DB::table('products')->where('id', $id)->exists()) {
+            $products = DB::table('products')->where('id', $id)->delete();
             return response()->json([
                 "message" => " product records deleted"
             ], 202);
