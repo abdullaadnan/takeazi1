@@ -23,7 +23,6 @@ class ShopController extends Controller
             'licence_code' => 'required',
             'shop_thumbnail' => 'required',
             'shop_banner1' => 'required',
-            'shop_banner_img1' => 'required',
             'is_display'=>'required|Boolean',
             'status'=>'required|Boolean',
         ]);
@@ -43,7 +42,7 @@ class ShopController extends Controller
                 'address_1' => $request->input('address_1'),
                 'address_2' => $request->input('address_2'),
                 'address_3' => $request->input('address_3'),
-                'shop_banner_img1' => $request->input('pincode_id'),
+                'pincode_id' => $request->input('pincode_id'),
                 'licence_code' => $request->input('licence_code'),
                 'shop_thumbnail' => $request->input('shop_thumbnail'),
                 'shop_banner1' => $request->input('shop_banner1'),
@@ -72,7 +71,6 @@ class ShopController extends Controller
             'licence_code' => 'required',
             'shop_thumbnail' => 'required',
             'shop_banner1' => 'required',
-            'shop_banner_img1' => 'required',
             'is_display'=>'required|Boolean',
             'status'=>'required|Boolean',
         ]);
@@ -93,7 +91,7 @@ class ShopController extends Controller
                 'address_1' => $request->input('address_1'),
                 'address_2' => $request->input('address_2'),
                 'address_3' => $request->input('address_3'),
-                'shop_banner_img1' => $request->input('pincode_id'),
+                'pincode_id' => $request->input('pincode_id'),
                 'licence_code' => $request->input('licence_code'),
                 'shop_thumbnail' => $request->input('shop_thumbnail'),
                 'shop_banner1' => $request->input('shop_banner1'),

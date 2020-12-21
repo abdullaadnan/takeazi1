@@ -18,7 +18,7 @@ class ProductController extends Controller
     public function create(Request $request)
     {
         $validator=validator::make($request->all(),[
-            'shop_id='>'required|integer',
+            'shop_id'=>'required|integer',
             'product_name'=>'required',
             'mrp'=>'required|integer',
             'selling_price'=>'required|integer',
@@ -49,7 +49,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $validator=validator::make($request->all(),[
-            'shop_id='>'required|integer',
+            'shop_id'=>'required|integer',
             'product_name'=>'required',
             'mrp'=>'required|integer',
             'selling_price'=>'required|integer',
@@ -76,7 +76,6 @@ class ProductController extends Controller
             ]);
             return response()->json([
                 "message" => "product updated successfully",
-                "id"=>"$id"
             ], 200);
         } else {
             return response()->json([
