@@ -61,6 +61,7 @@ Route::group([
     Route::post('update-product-subcategories/{id}','ProductSubcategoryController@update');
     Route::get('get-all-product-subcategories','ProductSubcategoryController@index');
     Route::get('get-product-subcategories/{id}','ProductSubcategoryController@SelectById');
+    //Route::post('upload','ProductSubcategoryController@upload');
 });
 
 

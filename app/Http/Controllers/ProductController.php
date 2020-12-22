@@ -24,7 +24,10 @@ class ProductController extends Controller
             'selling_price'=>'required|integer',
             'cost_price'=>'required|integer',
             'status'=>'required|Boolean',
-        ]);
+            'is_veg'=>'required|Boolean',
+            'is_stock'=>'required|Boolean',
+            'is_offer'=>'required|Boolean',
+            ]);
         if ($validator->fails()){
             return response()->json($validator->errors(),400);
         }
@@ -32,12 +35,21 @@ class ProductController extends Controller
             'shop_id' =>$request->input('shop_id'),
             'product_name' => $request->input('product_name'),
             'product_category_id' => $request->input('product_category_id'),
-            'details' => $request->input('details'),
+            'description' => $request->input('description'),
+            'food_contents' => $request->input('food_contents'),
+            'incredients' => $request->input('incredients'),
+            'production_method' => $request->input('production_method'),
+            'is_veg' => $request->input('is_veg'),
+            'is_stock' => $request->input('is_stock'),
+            'is_offer' => $request->input('is_offer'),
             'mrp' => $request->input('mrp'),
             'selling_price' => $request->input('selling_price'),
             'cost_price' => $request->input('cost_price'),
             'waiting_time' => $request->input('waiting_time'),
             'thumbnail' => $request->input('thumbnail'),
+            'grab_price' => $request->input('grab_price'),
+            'grab_price_from' => $request->input('grab_price_from'),
+            'grab_price_to' => $request->input('grab_price_to'),
             'status' => $request->input('status'),
         ]);
         return response()->json([
@@ -55,6 +67,9 @@ class ProductController extends Controller
             'selling_price'=>'required|integer',
             'cost_price'=>'required|integer',
             'status'=>'required|Boolean',
+            'is_veg'=>'required|Boolean',
+            'is_stock'=>'required|Boolean',
+            'is_offer'=>'required|Boolean',
 
         ]);
         if ($validator->fails()){

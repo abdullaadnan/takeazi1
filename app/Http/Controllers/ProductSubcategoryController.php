@@ -69,5 +69,9 @@ class ProductSubcategoryController extends Controller
             ], 404);
         }
     }
+//    public function upload(Request $request){
+//        $file=$request->file('file')->store('uploads');
+//        return['path'=>$file];
+//    }
 }
 
