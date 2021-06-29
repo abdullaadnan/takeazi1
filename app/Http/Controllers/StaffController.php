@@ -49,7 +49,8 @@ class StaffController extends Controller
         ]);
         return response()->json([
             "message" => "staff added succesfully",
-            "staff_id"=>$staff
+            "staff_id"=>$staff,
+            "shshhs"=>$hshshsh
         ], 201);
 
     }
